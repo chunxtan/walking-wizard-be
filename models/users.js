@@ -30,11 +30,9 @@ async function getUser(id) {
           lastName: user.lastName,
           email: user.email,
           password: user.password,
-          recipes: user.recipes,
-          bio: user.bio,
-          reviews: user.reviews,
-          favourites: user.favourites,
-          profilePicUrl: user.profilePicUrl
+          datasets: user.datasets,
+          scenarios: user.scenarios,
+          bookmarks: user.bookmarks
       }
   } catch(err) {
       console.log(err);
