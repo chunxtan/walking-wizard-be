@@ -12,6 +12,7 @@ require("./client/mongo");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var datasetsRouter = require('./routes/datasets');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(securityMiddleware.checkJWT);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/datasets', datasetsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
