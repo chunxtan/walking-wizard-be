@@ -1,31 +1,21 @@
 const modelDatasets = require('../models/datasets');
 
 module.exports = {
-    // getAllUsers,
-    // getUser,
+    getAllUserDatasets,
     createDataset,
     // updateUser,
-    // deleteUser
+    deleteDataset
 }
 
-// async function getAllUsers(req, res) {
-//     try {
-//         const userData = await modelUsers.getAllUsers(req.query);
-//         res.json({ users: userData });
-//     } catch(err) {
-//         res.status(500).json({ errorMsg: err.essage });
-//     }
-// }
-
-// async function getUser(req, res) {
-//     try {
-//         const user = await modelUsers.getUser(req.params.id);
-//         res.json({ user: user });
-//     } catch(err) {
-//         console.log(err);
-//         res.status(500).json({ errorMsg: err.message });
-//     }
-// }
+async function getAllUserDatasets(req, res) {
+    try {
+        const userId = req.params.userId;
+        const datasetData = await modelDatasets.getAllUserDatasets(userId);
+        res.json({ datasets: datasetData });
+    } catch(err) {
+        res.status(500).json({ errorMsg: err.essage });
+    }
+}
 
 async function createDataset(req, res) {
     try {
@@ -49,12 +39,12 @@ async function createDataset(req, res) {
 //     }
 // }
 
-// async function deleteUser(req, res) {
-//     try {
-//        await modelUsers.deleteUser(req.params.id);
-//        res.status(200).json({ message: "User deleted successfully." });
-//     } catch(err) {
-//         console.log(err);
-//         res.status(500).json({ errorMsg: err.message });
-//     }
-// }
+async function deleteDataset(req, res) {
+    try {
+       await modelDatasets.deleteDataset(req.params.id);
+       res.status(200).json({ message: "Dataset deleted successfully." });
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({ errorMsg: err.message });
+    }
+}

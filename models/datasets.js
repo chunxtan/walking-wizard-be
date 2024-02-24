@@ -2,42 +2,21 @@ const daoDatasets = require("../daos/datasets");
 const utilSecurity = require("../util/security");
 
 module.exports = {
-    // getAllUsers,
+    getAllUserDatasets,
     // getUser,
     createDataset,
+    deleteDataset
 }
 
-// function getAllUsers(queryFields) {
-//     return daoUsers.find(queryFields);
-// }
+async function getAllUserDatasets(userId) {
+    const datasets = await daoDatasets.find({ userId: userId });
 
-// async function getUser(id) {
-//   try {
-//       const user = await daoUsers.findById(id);
-
-//       if (!user) {
-//           throw new Error('User not found');
-//       }
-
-//       return {
-//           _id: user._id,
-//           firstName: user.firstName,
-//           lastName: user.lastName,
-//           email: user.email,
-//           password: user.password,
-//           datasets: user.datasets,
-//           scenarios: user.scenarios,
-//           bookmarks: user.bookmarks
-//       }
-//   } catch(err) {
-//       console.log(err);
-//       throw new Error(err.message || "An error occurred");
-//   }
-// }
+    return datasets;
+}
 
 async function createDataset(body) {
     // Check if dataset already exists in DB
-    const dataset = await daoDatasets.findOne({ "title": body.email });
+    const dataset = await daoDatasets.findOne({ "title": body.title });
     if (dataset) {
         return { success: false, error: "Dataset with title already exists." }
     } 
@@ -52,6 +31,10 @@ async function createDataset(body) {
 //     return updatedProfile;
 // }   
 
-// async function deleteUser(id) {
-//     await daoUsers.findByIdAndDelete(id);
-// }
+async function deleteDataset(id) {
+  try {
+    await daoDatasets.findByIdAndDelete(id);
+  } catch(err) {
+    console.error(err);
+  }
+}

@@ -5,14 +5,13 @@ var securityMiddleware = require('../middlewares/security');
 
 // base path: /datasets
 
-// // Show all user profiles
-// router.get('/show', usersController.getAllUsers);
+// Show all datasets
+router.get('/show/:userId', datasetsController.getAllUserDatasets);
 
-// // Show particular user profile
-// router.get('/showOne/:id', usersController.getUser);
+// Create a dataset
+router.post('/create', securityMiddleware.checkLogin, datasetsController.createDataset);
 
-// TODO: add security middleware to router
-// Create a user profile
-router.post('/create', datasetsController.createDataset);
+// Delete a dataset
+router.delete('/delete/:id', securityMiddleware.checkLogin, datasetsController.deleteDataset);
 
 module.exports = router;
