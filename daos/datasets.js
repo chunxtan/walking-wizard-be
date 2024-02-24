@@ -36,6 +36,11 @@ const featureSchema = new Schema({
 });
 
 const datasetSchema = new Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     title: {
         type: String,
         required: true
@@ -44,7 +49,15 @@ const datasetSchema = new Schema({
         type: String,
         required: true
     },
-    features: [featureSchema]
+    parentLayerId: {
+      type: String,
+      required: true
+    },
+    newFeatures: [featureSchema],
+    deletedFeatures: [{
+      type: String,
+      required: false
+    }]
 }, 
     {
     timestamps: true
