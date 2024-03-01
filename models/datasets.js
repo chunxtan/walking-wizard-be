@@ -28,7 +28,7 @@ async function createDataset(body) {
 }
 
 async function updatedDataset(id, dataset) {
-    const updatedDataset = await daoUsers.findByIdAndUpdate(id, dataset, { new: true });
+    const updatedDataset = await daoDatasets.findByIdAndUpdate(id, dataset, { new: true });
     return updatedDataset;
 }   
 
