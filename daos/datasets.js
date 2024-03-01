@@ -2,28 +2,6 @@ const mongoose = require("mongoose");
 const { stringify } = require("querystring");
 const Schema = mongoose.Schema;
 
-const pointSchema = new Schema({
-  type: {
-    type: String,
-    required: true,
-    enum: "Point"
-  },
-  coordinates: {
-    type: [Number],
-    required: true
-  }
-})
-
-const propertiesSchema = new Schema({
-  name: {
-    type: String,
-    required: false
-  },
-  description: {
-    type: String,
-    required: false
-  }
-})
 
 const featureSchema = new Schema({
   type: {
@@ -31,8 +9,27 @@ const featureSchema = new Schema({
     required: true,
     enum: "Feature"
   },
-  properties: propertiesSchema,
-  geometry: pointSchema
+  properties: {
+    Name: {
+      type: String,
+      required: false
+    },
+    Description: {
+      type: String,
+      required: false
+    }
+  },
+  geometry: {
+    type: {
+      type: String,
+      required: true,
+      enum: "Point"
+    },
+    coordinates: {
+      type: [Number],
+      required: true
+    }
+  }
 });
 
 const datasetSchema = new Schema({
@@ -54,10 +51,7 @@ const datasetSchema = new Schema({
       required: true
     },
     newFeatures: [featureSchema],
-    deletedFeatures: [{
-      type: String,
-      required: false
-    }]
+    deletedFeatures: [featureSchema]
 }, 
     {
     timestamps: true

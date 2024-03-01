@@ -5,6 +5,7 @@ module.exports = {
     getAllUserDatasets,
     // getUser,
     createDataset,
+    updatedDataset,
     deleteDataset
 }
 
@@ -26,10 +27,10 @@ async function createDataset(body) {
     return { success: true, data: newDataset };
 }
 
-// async function updateUser(id, profile) {
-//     const updatedProfile = await daoUsers.findByIdAndUpdate(id, profile, { new: true });
-//     return updatedProfile;
-// }   
+async function updatedDataset(id, dataset) {
+    const updatedDataset = await daoUsers.findByIdAndUpdate(id, dataset, { new: true });
+    return updatedDataset;
+}   
 
 async function deleteDataset(id) {
   try {

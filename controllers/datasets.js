@@ -3,7 +3,7 @@ const modelDatasets = require('../models/datasets');
 module.exports = {
     getAllUserDatasets,
     createDataset,
-    // updateUser,
+    updateDataset,
     deleteDataset
 }
 
@@ -29,15 +29,15 @@ async function createDataset(req, res) {
     }
 }
 
-// async function updateUser(req, res) {
-//     try {
-//         const updatedProfile = await modelUsers.updateUser(req.params.id, req.body);
-//         res.status(200).json(updatedProfile);
-//     } catch(err) {
-//         console.log(err);
-//         res.status(500).json({ errorMsg: err.message });
-//     }
-// }
+async function updateDataset(req, res) {
+    try {
+        const updatedDataset = await modelDatasets.updatedDataset(req.params.id, req.body);
+        res.status(200).json(updatedDataset);
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({ errorMsg: err.message });
+    }
+}
 
 async function deleteDataset(req, res) {
     try {
