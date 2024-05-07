@@ -3,6 +3,7 @@ const utilSecurity = require("../util/security");
 
 module.exports = {
     getAllUserDatasets,
+    getDataset,
     // getUser,
     createDataset,
     updatedDataset,
@@ -13,6 +14,12 @@ async function getAllUserDatasets(userId) {
     const datasets = await daoDatasets.find({ userId: userId });
 
     return datasets;
+}
+
+async function getDataset(backendId) {
+  const dataset = await daoDatasets.findById(backendId);
+
+  return dataset;
 }
 
 async function createDataset(body) {

@@ -7,6 +7,7 @@ var securityMiddleware = require('../middlewares/security');
 
 // Show all datasets
 router.get('/show/:userId', securityMiddleware.checkLogin, datasetsController.getAllUserDatasets);
+router.get('/show/:datasetId', securityMiddleware.checkLogin, datasetsController.getDataset)
 
 // Create a dataset
 router.post('/create', securityMiddleware.checkLogin, datasetsController.createDataset);

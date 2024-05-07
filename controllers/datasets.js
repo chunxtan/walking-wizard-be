@@ -2,6 +2,7 @@ const modelDatasets = require('../models/datasets');
 
 module.exports = {
     getAllUserDatasets,
+    getDataset,
     createDataset,
     updateDataset,
     deleteDataset
@@ -13,7 +14,17 @@ async function getAllUserDatasets(req, res) {
         const datasetData = await modelDatasets.getAllUserDatasets(userId);
         res.json({ datasets: datasetData });
     } catch(err) {
-        res.status(500).json({ errorMsg: err.essage });
+        res.status(500).json({ errorMsg: err.message });
+    }
+}
+
+async function getDataset(req, res) {
+    try {
+        const datasetId = req.params.backendId;
+        const datasetData = await modelDatasets.getDataset(datasetId);
+        res.json({ dataset: datasetData });
+    } catch(err) {
+        res.status(500).json({ errorMsg: err.message })
     }
 }
 
